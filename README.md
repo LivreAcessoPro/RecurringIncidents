@@ -1,6 +1,9 @@
 # Recurring Incidents (Zabbix Dashboard Widget)
 
 This repository contains a Zabbix frontend module that adds a **Recurring Incidents** dashboard widget. The widget helps continuous improvement teams identify recurring problems, track key reliability signals (e.g., MTTR/MTBF), and spot trends over time.
+<img width="1188" height="624" alt="image" src="https://github.com/user-attachments/assets/8815d9f8-bcc6-4e7a-8891-814a48a72a7a" />
+<img width="711" height="763" alt="image" src="https://github.com/user-attachments/assets/b65837c5-4ba6-4855-a702-d7f8080c5607" />
+
 
 ## Features
 
