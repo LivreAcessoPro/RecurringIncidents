@@ -5,9 +5,9 @@
 	"name": "Recurring Incidents",
 	"namespace": "RecurringIncidents",
 	"version": "1.0",
-	"author": "Zabbix",
+	"author": "monzphere.com",
 	"description": "Displays recurring incidents that have occurred multiple times, helping identify patterns and frequently occurring problems.",
-	"url": "web_interface/frontend_sections/dashboards/widgets/recurringincidents",
+	"url": "monzphere.com",
 	"widget": {
 		"js_class": "CWidgetRecurringIncidents",
 		"in": {
