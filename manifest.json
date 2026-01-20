@@ -1,0 +1,35 @@
+{
+	"manifest_version": 2.0,
+	"id": "recurringincidents",
+	"type": "widget",
+	"name": "Recurring Incidents",
+	"namespace": "RecurringIncidents",
+	"version": "1.0",
+	"author": "Zabbix",
+	"description": "Displays recurring incidents that have occurred multiple times, helping identify patterns and frequently occurring problems.",
+	"url": "web_interface/frontend_sections/dashboards/widgets/recurringincidents",
+	"widget": {
+		"js_class": "CWidgetRecurringIncidents",
+		"in": {
+			"hostids": {
+				"type": "_hostids"
+			},
+			"groupids": {
+				"type": "_hostgroupids"
+			}
+		},
+		"out": [
+			{
+				"type": "_eventid"
+			}
+		]
+	},
+	"actions": {
+		"widget.recurringincidents.view": {
+			"class": "WidgetView"
+		}
+	},
+	"assets": {
+		"js": ["class.widget.js"]
+	}
+}
