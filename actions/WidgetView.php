@@ -51,7 +51,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 			$time_from = $this->fields_values['time_period']['from_ts'];
 			$time_to = $this->fields_values['time_period']['to_ts'];
 
-			// Build filters for Event API (match CScreenProblem exclude group logic as closely as possible).
 			$event_groupids = !$this->isTemplateDashboard() && $this->fields_values['groupids']
 				? getSubGroups($this->fields_values['groupids'])
 				: null;
@@ -94,7 +93,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 				$event_hostids = array_diff($event_hostids, $exclude_hostids);
 			}
 
-			// Get all problems in the time period
 			$data = CScreenProblem::getData([
 				'show' => $show,
 				'from' => $time_from,
@@ -115,7 +113,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 				'show_opdata' => OPERATIONAL_DATA_SHOW_NONE
 			], $search_limit);
 
-			// Collect trigger IDs from fetched problems (used as candidates for widget output).
 			$trigger_occurrences = [];
 			$recurring_problems = [];
 
@@ -300,7 +297,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 
 			$recurring_problems = array_slice($recurring_problems, 0, $this->fields_values['show_lines'], true);
 
-			// Recalculate MTTR/MTBF for displayed triggers using ALL events in selected period (not sampling-limited).
 			$display_triggerids = array_values(array_unique(array_column($recurring_problems, 'objectid')));
 
 			$events_full = $display_triggerids
@@ -387,7 +383,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 			}
 			unset($problem);
 
-			// Rebuild data structure for display
 			$display_problems = [];
 			foreach ($recurring_problems as $problem) {
 				$display_problems[$problem['eventid']] = $problem;
@@ -412,10 +407,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 				);
 			}
 
-			// Auto-detect Service/SLA and compute SLI (AnalistProblem7.0-style):
-			// 1) Find a matching service by comparing event tags to service problem_tags.
-			// 2) Find a matching SLA for that service via API::SLA()->get(serviceids=>...).
-			// 3) Compute SLI via API::SLA()->getSli for the selected time period.
 			if ($data['problems']) {
 				$sli_cache = [];
 				$service_cache = [];
@@ -613,7 +604,6 @@ class WidgetView extends CControllerDashboardWidgetView {
 					$result = strcmp($a['name'], $b['name']);
 					break;
 				case 'host':
-					// Would need host data for this
 					$result = 0;
 					break;
 				case 'recurrence_count':
